@@ -865,6 +865,7 @@ func HandleIKEAUTH(udpConn *net.UDPConn, n3iwfAddr, ueAddr *net.UDPAddr, message
 			// } else {
 			// 	ikeLog.Tracef("Peer authentication success")
 			// }
+			
 		} else {
 			logger.IKELog.Warn("Peer authentication failed.")
 			// Inform UE the authentication has failed
