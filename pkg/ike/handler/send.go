@@ -6,7 +6,7 @@ import (
 	"runtime/debug"
 	"time"
 
-	ngap_message "github.com/free5gc/n3iwf/internal/ngap/message"
+	// ngap_message "github.com/free5gc/n3iwf/internal/ngap/message"
 	"github.com/free5gc/n3iwf/pkg/context"
 	"github.com/free5gc/n3iwf/pkg/factory"
 	ike_message "github.com/free5gc/n3iwf/pkg/ike/message"
@@ -112,12 +112,12 @@ func StartDPD(n3iwfUe *context.N3IWFUe) {
 				var DPDReqRetransTime time.Duration = 2 * time.Second
 				n3iwfUe.N3IWFIKESecurityAssociation.DPDReqRetransTimer = context.NewDPDPeriodicTimer(DPDReqRetransTime,
 					liveness.MaxRetryTimes, n3iwfUe.N3IWFIKESecurityAssociation, func() {
-						ikeLog.Errorf("UE is down")
-						cause := ngap_message.BuildCause(ngapType.CausePresentRadioNetwork,
-							ngapType.CauseRadioNetworkPresentRadioConnectionWithUeLost)
-						ngap_message.SendUEContextReleaseRequest(n3iwfUe.AMF, n3iwfUe, *cause)
-						n3iwfUe.N3IWFIKESecurityAssociation.DPDReqRetransTimer = nil
-						timer.Stop()
+						// ikeLog.Errorf("UE is down")
+						// cause := ngap_message.BuildCause(ngapType.CausePresentRadioNetwork,
+						// 	ngapType.CauseRadioNetworkPresentRadioConnectionWithUeLost)
+						// ngap_message.SendUEContextReleaseRequest(n3iwfUe.AMF, n3iwfUe, *cause)
+						// n3iwfUe.N3IWFIKESecurityAssociation.DPDReqRetransTimer = nil
+						// timer.Stop()
 					})
 			}
 		}
