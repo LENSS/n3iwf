@@ -842,7 +842,7 @@ func HandleIKEAUTH(udpConn *net.UDPConn, n3iwfAddr, ueAddr *net.UDPAddr, message
 			}
 			expectedAuthenticationData := pseudorandomFunction.Sum(nil)
 
-			ikeLog.Tracef("Expected Authentication Data:\n%s", hex.Dump(expectedAuthenticationData))
+			logger.IKELog.Tracef("Expected Authentication Data:\n%s", hex.Dump(expectedAuthenticationData))
 			// if !bytes.Equal(authentication.AuthenticationData, expectedAuthenticationData) {
 			// 	ikeLog.Warn("Peer authentication failed.")
 			// 	// Inform UE the authentication has failed
@@ -865,7 +865,7 @@ func HandleIKEAUTH(udpConn *net.UDPConn, n3iwfAddr, ueAddr *net.UDPAddr, message
 			// } else {
 			// 	ikeLog.Tracef("Peer authentication success")
 			// }
-			
+
 		} else {
 			logger.IKELog.Warn("Peer authentication failed.")
 			// Inform UE the authentication has failed
