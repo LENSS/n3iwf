@@ -44,8 +44,7 @@ func SendUEInformationExchange(
 	ikeUe *context.N3IWFIkeUe, payload ike_message.IKEPayloadContainer,
 ) {
 	ikeSecurityAssociation := ikeUe.N3IWFIKESecurityAssociation
-	responseIKEMessage := new(ike_mes	// ngap_message "github.com/free5gc/n3iwf/internal/ngap/message"
-	sage.IKEMessage)
+	responseIKEMessage := new(ike_message.IKEMessage)
 
 	// Build IKE message
 	responseIKEMessage.BuildIKEHeader(ikeSecurityAssociation.RemoteSPI,
@@ -121,7 +120,7 @@ func StartDPD(ikeUe *context.N3IWFIkeUe) {
 				SendUEInformationExchange(ikeUe, nil)
 				var DPDReqRetransTime time.Duration = 2 * time.Second
 				ikeUe.N3IWFIKESecurityAssociation.DPDReqRetransTimer = context.NewDPDPeriodicTimer(DPDReqRetransTime,
-					liveness.MaxRetryTimes, n3iwfUe.N3IWFIKESecurityAssociation, func() {
+					liveness.MaxRetryTimes, ikeUE.N3IWFIKESecurityAssociation, func() {
 						// ikeLog.Errorf("UE is down")
 						// cause := ngap_message.BuildCause(ngapType.CausePresentRadioNetwork,
 						// 	ngapType.CauseRadioNetworkPresentRadioConnectionWithUeLost)
